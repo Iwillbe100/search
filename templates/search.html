@@ -1,0 +1,101 @@
+<!-- templates/search.html -->
+<html>
+  <head>
+    <title>Bible Search</title>
+  </head>
+  <body>
+    <h1>Bible Search</h1>
+    <form method="post">
+      {% csrf_token %}
+      <label for="book">Book:</label>
+      <select name="book" id="book">
+          <option value="gen">창세기</option>
+          <option value="exo">출애굽기</option>
+          <option value="lev">레위기</option>
+          <option value="num">민수기</option>
+          <option value="deu">신명기</option>
+          <option value="jos">여호수아</option>
+          <option value="jdg">사사기</option>
+          <option value="rut">룻기</option>
+          <option value="1sa">사무엘상</option>
+          <option value="2sa">사무엘하</option>
+          <option value="1ki">열왕기상</option>
+          <option value="2ki">열왕기하</option>
+          <option value="1ch">역대상</option>
+          <option value="2ch">역대하</option>
+          <option value="ezr">에스라</option>
+          <option value="neh">느헤미야</option>
+          <option value="est">에스더</option>
+          <option value="job">욥기</option>
+          <option value="psa">시편</option>
+          <option value="pro">잠언</option>
+          <option value="ecc">전도서</option>
+          <option value="sng">아가</option>
+          <option value="isa">이사야</option>
+          <option value="jer">예레미야</option>
+          <option value="lam">예레미야 애가</option>
+          <option value="ezk">에스겔</option>
+          <option value="dan">다니엘</option>
+          <option value="hos">호세아</option>
+          <option value="jol">요엘</option>
+          <option value="amo">아모스</option>
+          <option value="oba">오바댜</option>
+          <option value="jon">요나</option>
+          <option value="mic">미가</option>
+          <option value="nam">나훔</option>
+          <option value="hab">하박국</option>
+          <option value="zep">스바냐</option>
+          <option value="hag">학개</option>
+          <option value="zec">스가랴</option>
+          <option value="mal">말라기</option>
+          <option value="mat">마태복음</option>
+          <option value="mrk">마가복음</option>
+          <option value="luk">누가복음</option>
+          <option value="jhn">요한복음</option>
+          <option value="act">사도행전</option>
+          <option value="rom">로마서</option>
+          <option value="1co">고린도전서</option>
+          <option value="2co">고린도후서</option>
+          <option value="gal">갈라디아서</option>
+          <option value="eph">에베소서</option>
+          <option value="eph">에베소서</option>
+          <option value="php">빌립보서</option>
+          <option value="col">골로새서</option>
+          <option value="1th">데살로니가전서</option>
+          <option value="2th">데살로니가후서</option>
+          <option value="1ti">디모데전서</option>
+          <option value="2ti">디모데후서</option>
+          <option value="tit">디도서</option>
+          <option value="phm">빌레몬서</option>
+          <option value="heb">히브리서</option>
+          <option value="jas">야고보서</option>
+          <option value="1pe">베드로전서</option>
+          <option value="2pe">베드로후서</option>
+          <option value="1jn">요한1서</option>
+          <option value="2jn">요한2서</option>
+          <option value="3jn">요한3서</option>
+          <option value="jud">유다서</option>
+          <option value="rev">요한계시록</option>
+      </select>
+      <br>
+      <label for="chapter">Chapter:</label>
+      <input type="number" name="chapter" id="chapter" min="1" max="150" required>
+      <br>
+      <label for="verse_start">Verse (start):</label>
+      <input type="number" name="verse_start" id="verse_start" min="1" required>
+      <label for="verse_end">Verse (end):</label>
+      <input type="number" name="verse_end" id="verse_end" min="1" required>
+      <br>
+      <input type="submit" value="Search">
+    </form>
+
+{% if verse_content_list %}
+  <pre>
+    {% for verse, content in verse_content_list %}
+      {{ verse }} {{ content }} <br>
+  </pre>
+    {% endfor %}
+
+{% endif %}
+  </body>
+</html>
