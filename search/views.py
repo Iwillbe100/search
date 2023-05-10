@@ -29,6 +29,6 @@ def search(request):
         content_list = [content.text.strip() for content in soup.find_all('body')]
         verse_content_list = list(zip(verse_list, content_list))
 
-        return render(request, 'search.html', {'verse_content_list': verse_content_list})
+        return render(request, 'index.html', {'verse_content_list': verse_content_list})
     else:
-        return render(request, 'search.html')
+        return render(request, 'index.html')
