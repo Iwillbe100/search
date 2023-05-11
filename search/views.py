@@ -26,9 +26,10 @@ def search(request):
                 content_list.append(content)
 
         verse_list = [verse.text.strip() for verse in soup.find_all('small')]
-        content_list = [content.text.strip() for content in soup.find_all('body')]
+        content_list = [content.text.strip()[4:] for content in soup.find_all('body')]
+        print (content_list)
         verse_content_list = list(zip(verse_list, content_list))
 
-        return render(request, 'index.html', {'verse_content_list': verse_content_list})
+        return render(request, 'index.php', {'verse_content_list': verse_content_list, 'book': book})
     else:
-        return render(request, 'index.html')
+        return render(request, 'index.php')

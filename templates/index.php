@@ -4,11 +4,19 @@
     <title>Bible Search</title>
   </head>
   <body>
+
+<?php
+session_start();
+if(isset($_POST['submit'])) {
+  $_SESSION['savedInput'] = $_POST['myInput'];
+}
+?>
     <h1>Bible Search</h1>
+    <img src =https://img.freepik.com/premium-photo/open-book-bible-on-suset-background-outdoor-god-s-promises_488220-33897.jpg>
     <form method="post">
       {% csrf_token %}
       <label for="book">Book:</label>
-      <select name="book" id="book">
+      <select name="book" id="book" value="<?php echo $_SESSION['savedInput'] ?? ''; ?>">
           <option value="gen">창세기</option>
           <option value="exo">출애굽기</option>
           <option value="lev">레위기</option>
@@ -79,12 +87,12 @@
       </select>
       <br>
       <label for="chapter">Chapter:</label>
-      <input type="number" name="chapter" id="chapter" min="1" max="150" required>
+      <input type="number" value="<?php echo $_SESSION['savedInput'] ?? ''; ?>" name="chapter" id="chapter" min="1" max="150" required>
       <br>
       <label for="verse_start">Verse (start):</label>
-      <input type="number" name="verse_start" id="verse_start" min="1" required>
+      <input type="number" value="<?php echo $_SESSION['savedInput'] ?? ''; ?>" name="verse_start" id="verse_start" min="1" required>
       <label for="verse_end">Verse (end):</label>
-      <input type="number" name="verse_end" id="verse_end" min="1" required>
+      <input type="number" value="<?php echo $_SESSION['savedInput'] ?? ''; ?>" name="verse_end" id="verse_end" min="1" required>
       <br>
       <input type="submit" value="Search">
     </form>
@@ -92,9 +100,9 @@
 {% if verse_content_list %}
   <pre>
     {% for verse, content in verse_content_list %}
-      {{ verse }} {{ content }} <br>
-  </pre>
+{{ verse }} {{ content }} <br>
     {% endfor %}
+  </pre>
 
 {% endif %}
   </body>
