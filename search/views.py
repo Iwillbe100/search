@@ -30,6 +30,6 @@ def search(request):
         print (content_list)
         verse_content_list = list(zip(verse_list, content_list))
 
-        return render(request, 'index.php', {'verse_content_list': verse_content_list, 'book': book})
+        return render(request, 'index.html', {'verse_content_list': verse_content_list, 'book': book})
     else:
-        return render(request, 'index.php')
+        return render(request, 'index.html')

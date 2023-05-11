@@ -16,7 +16,7 @@ if(isset($_POST['submit'])) {
     <form method="post">
       {% csrf_token %}
       <label for="book">Book:</label>
-      <select name="book" id="book" value="<?php echo $_SESSION['savedInput'] ?? ''; ?>">
+      <select name="book" id="book">
           <option value="gen">창세기</option>
           <option value="exo">출애굽기</option>
           <option value="lev">레위기</option>
@@ -67,7 +67,7 @@ if(isset($_POST['submit'])) {
           <option value="gal">갈라디아서</option>
           <option value="eph">에베소서</option>
           <option value="eph">에베소서</option>
-          <option value="php">빌립보서</option>
+          <option value="phi">빌립보서</option>
           <option value="col">골로새서</option>
           <option value="1th">데살로니가전서</option>
           <option value="2th">데살로니가후서</option>
@@ -87,14 +87,14 @@ if(isset($_POST['submit'])) {
       </select>
       <br>
       <label for="chapter">Chapter:</label>
-      <input type="number" value="<?php echo $_SESSION['savedInput'] ?? ''; ?>" name="chapter" id="chapter" min="1" max="150" required>
+      <input type="number" name="chapter" id="chapter" min="1" max="150"  placeholder="장" required>
       <br>
       <label for="verse_start">Verse (start):</label>
-      <input type="number" value="<?php echo $_SESSION['savedInput'] ?? ''; ?>" name="verse_start" id="verse_start" min="1" required>
+      <input type="number" name="verse_start" id="verse_start"  placeholder="절" min="1" required>
       <label for="verse_end">Verse (end):</label>
-      <input type="number" value="<?php echo $_SESSION['savedInput'] ?? ''; ?>" name="verse_end" id="verse_end" min="1" required>
+      <input type="number" name="verse_end" id="verse_end"  placeholder="절" min="1" required>
       <br>
-      <input type="submit" value="Search">
+      <input type="submit" value="검색">
     </form>
 
 {% if verse_content_list %}
@@ -105,5 +105,6 @@ if(isset($_POST['submit'])) {
   </pre>
 
 {% endif %}
-  </body>
+
+</body>
 </html>
